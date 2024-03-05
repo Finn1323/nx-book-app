@@ -1,0 +1,68 @@
+{
+  "name": "nx-book-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "nx-book-app",
+  "sourceRoot": "apps/nx-book-app/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/nx-book-app",
+        "index": "apps/nx-book-app/src/index.html",
+        "browser": "apps/nx-book-app/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/nx-book-app/tsconfig.app.json",
+        "assets": [
+          "apps/nx-book-app/src/favicon.ico",
+          "apps/nx-book-app/src/assets"
+        ],
+        "styles": ["apps/nx-book-app/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "nx-book-app:build:production"
+        },
+        "development": {
+          "buildTarget": "nx-book-app:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "nx-book-app:build"
+      }
+    }
+  }
+}

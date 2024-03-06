@@ -1,0 +1,42 @@
+<main class="flex flex-col justify-center items-center my-20 mx-20">
+  <h1 class="text-3xl mb-4">Book App</h1>
+
+  <div
+    class="flex flex-col flex-wrap justify-around items-center gap-4 md:flex-row"
+  >
+    <div class="flex justify-center items-center flex-col md:flex-row">
+      <label>Filter by author</label>
+      <select class="h-10 ml-4 p-2 bg-cyan-950 text-white rounded">
+        <option
+          *ngFor="let book of allBooks"
+          [value]="book.author"
+          (click)="filterBook(book.author)"
+        >
+          {{ book.author }}
+        </option>
+      </select>
+    </div>
+    <nx-book-app-add-book></nx-book-app-add-book>
+  </div>
+
+  <div *ngIf="clickedFilter; else filteredList">
+    <ul class="flex flex-wrap gap-4">
+      <li
+        *ngFor="let book of allBooks"
+        class="flex flex-col gap-1 items-start mt-5 bg-cyan-700 text-white p-4 rounded-md min-w-72"
+      >
+        <nx-book-app-book [book]="book"> </nx-book-app-book>
+      </li>
+    </ul>
+  </div>
+  <ng-template #filteredList>
+    <ul class="flex flex-wrap gap-4">
+      <li
+        *ngFor="let book of allBooksFiltered"
+        class="flex flex-col gap-1 items-start mt-5 bg-cyan-700 text-white p-4 rounded-md min-w-72"
+      >
+        <nx-book-app-book [book]="book"> </nx-book-app-book>
+      </li>
+    </ul>
+  </ng-template>
+</main>

@@ -1,0 +1,52 @@
+<div class="flex gap-2 self-end w-14">
+  <button class="self-end" (click)="editBook(book)">
+    <img src="./././././assets/edit.svg" alt="Edit" />
+  </button>
+  <button class="self-end" (click)="deleteBook(book.id)">
+    <img src="./././././assets/delete.svg" alt="Delete" />
+  </button>
+</div>
+<p>Title: {{ book.title }}</p>
+<p>Author: {{ book.author }}</p>
+<p>Published on: {{ book.publishingDate }}</p>
+@if(toggleEditForm){
+
+<form (ngSubmit)="saveEdit()" class="flex flex-col justify-center gap-4 mt-4">
+  <div class="flex flex-col">
+    <label for="title">Title</label>
+    <input
+      id="title"
+      class="text-stone-800"
+      type="text"
+      [(ngModel)]="editingBook.title"
+      name="title"
+      required
+    />
+  </div>
+  <div class="flex flex-col">
+    <label for="author">Author</label>
+    <input
+      id="author"
+      class="text-stone-800"
+      type="text"
+      [(ngModel)]="editingBook.author"
+      name="author"
+      required
+    />
+  </div>
+  <div class="flex flex-col">
+    <label for="publishingDate">Published on</label>
+    <input
+      id="publishingDate"
+      class="text-stone-800"
+      type="text"
+      [(ngModel)]="editingBook.publishingDate"
+      name="publishingDate"
+      required
+    />
+  </div>
+  <button class="bg-cyan-950 text-white p-2 rounded mt-4" type="submit">
+    Save
+  </button>
+</form>
+}

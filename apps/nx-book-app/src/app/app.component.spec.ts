@@ -1,14 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { provideMockStore } from '@ngrx/store/testing';
-
+import { bookState } from 'libs/src/lib/store/store/book.state';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent, RouterTestingModule],
-      providers: [provideMockStore()],
+      providers: [
+        provideMockStore({
+          initialState: {
+            bookState,
+          },
+        }),
+      ],
     }).compileComponents();
   });
 

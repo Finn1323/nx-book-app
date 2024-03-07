@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BookListComponent } from './book-list.component';
 import { provideMockStore } from '@ngrx/store/testing';
+import { bookState } from '../../store/store/book.state';
 
 describe('BookListComponent', () => {
   let component: BookListComponent;
@@ -9,7 +10,13 @@ describe('BookListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BookListComponent],
-      providers: [provideMockStore()],
+      providers: [
+        provideMockStore({
+          initialState: {
+            bookState,
+          },
+        }),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BookListComponent);

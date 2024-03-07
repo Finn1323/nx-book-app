@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideMockStore } from '@ngrx/store/testing';
 import { BookComponent } from './book.component';
 
 describe('BookComponent', () => {
@@ -8,10 +8,10 @@ describe('BookComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BookComponent]
-    })
-    .compileComponents();
-    
+      imports: [BookComponent],
+      providers: [provideMockStore()],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(BookComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
